@@ -1,37 +1,56 @@
 .entry {
     display: flex;
+    height: 2.5em;
     
-}
-
-.entry:hover {
-    background-color: whitesmoke;
 }
 
 
 .entry__account {
     flex: 1;
-    border: 1px solid blue;
+    display: flex;
+    align-items: center;
+
 }
 
 .notidays {
+    display: flex;
+    align-items: center;
+
     flex: 1;
-    border: 1px solid red;
 }
 
 .dateset {
+    display: flex;
+    align-items: center;
+
     flex: 2;
-    border: 1px solid purple;
 }
 
 .password {
+    display: flex;
+    align-items: center;
+
     flex: 1.5;
-    border: 1px solid green;
 }
 
 .icons {
     display: flex;
+    align-items: center;
     justify-content: left;
     padding: 0em 0em 0em 0em;
     flex: 1;
-    border: 1px solid pink;
+}
+
+.iconselector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    cursor: pointer;
+}
+
+.iconselector:hover {
+    background-color: lightgray;
 }

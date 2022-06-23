@@ -29,12 +29,12 @@ const IconSelector = ({type}) => {
     return (
         
         <div className='iconselector'>
-            {type === "edit" && <FiEdit />}
-            {type === "check" && <FiCheck />}
-            {type === "reset" && <FiX />}
-            {type === "delete" && <FiTrash2 />}
-            {type === "view" && <FiEye />}
-            {type === "hide" && <FiEyeOff />}
+            {type === "edit" && <FiEdit size="60%" color="blue"/>}
+            {type === "check" && <FiCheck size="80%" color="#00FF00"/>}
+            {type === "reset" && <FiX size="80%" color="orange"/>}
+            {type === "delete" && <FiTrash2 size="75%" color="FF0000"/>}
+            {type === "view" && <FiEye size="80%" color="#282828"/>}
+            {type === "hide" && <FiEyeOff size="60%" color="#282828"/>}
 
         </div>
     )
@@ -46,7 +46,7 @@ const IconSelector = ({type}) => {
 
 const Entry = ({accountName, notificationDays, lastSet, password}) => {
 
-    const [pwVisible, setPwVisible] = useState(false);
+    const [pwVisible, setPwVisible] = useState(true);
 
     const [_accountName, setAccountName] = useState(accountName);
     const [_notificationDays, setNotificationDays] = useState(notificationDays);
@@ -58,7 +58,7 @@ const Entry = ({accountName, notificationDays, lastSet, password}) => {
 
 
 
-    const [state, setState] = useState("edit")
+    const [state, setState] = useState("saved")
     // here we will send the request for the password if 
 
     return (
@@ -75,6 +75,8 @@ const Entry = ({accountName, notificationDays, lastSet, password}) => {
             <div className='password'>
                 {pwVisible && <p>{password}</p>}
                 {!pwVisible && <p>**********</p>}
+                {pwVisible && <IconSelector type="hide"/>}
+                {!pwVisible && <IconSelector type="view"/>}
 
             </div>
             <div className='icons'>
