@@ -1,0 +1,37 @@
+.entry {
+    display: flex;
+    
+}
+
+.entry:hover {
+    background-color: whitesmoke;
+}
+
+
+.entry__account {
+    flex: 1;
+    border: 1px solid blue;
+}
+
+.notidays {
+    flex: 1;
+    border: 1px solid red;
+}
+
+.dateset {
+    flex: 2;
+    border: 1px solid purple;
+}
+
+.password {
+    flex: 1.5;
+    border: 1px solid green;
+}
+
+.icons {
+    display: flex;
+    justify-content: left;
+    padding: 0em 0em 0em 0em;
+    flex: 1;
+    border: 1px solid pink;
+}
