@@ -22,6 +22,27 @@ function App() {
     notificationDays: 100,
     lastSet: new Date(),
     password: 1234567890,
+    state: "saved",
+  },{
+    id: 3,
+    accountName: "Spotify",
+    notificationDays: 50,
+    lastSet: new Date(),
+    password: 1234567890,
+    state: "saved"
+  },{
+    id: 4,
+    accountName: "Spotify",
+    notificationDays: 50,
+    lastSet: new Date(),
+    password: 1234567890,
+    state: "saved"
+  },{
+    id: 5,
+    accountName: "Spotify",
+    notificationDays: 50,
+    lastSet: new Date(),
+    password: 1234567890,
     state: "saved"
   }];
 

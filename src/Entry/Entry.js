@@ -44,16 +44,16 @@ const IconSelector = ({type}) => {
 
 
 
-const Entry = ({accountName, notificationDays, lastSet, password, newEntry}) => {
+const Entry = ({accountName, notificationDays, lastSet, password}) => {
 
-    const [pwVisible, setPwVisible] = useState(true);
+    const [pwVisible, setPwVisible] = useState(false);
 
     const [_accountName, setAccountName] = useState(accountName);
     const [_notificationDays, setNotificationDays] = useState(notificationDays);
     const [_lastSet, setLastSet] = useState(lastSet);
     const [_password, setPassword] = useState(password);
 
-    const [state, setState] = useState(newEntry ? "create" : "saved")
+    const [state, setState] = useState("saved")
     // here we will send the request for the password if 
 
 
@@ -77,15 +77,21 @@ const Entry = ({accountName, notificationDays, lastSet, password, newEntry}) => 
     const handleSubmit = () => {
         //send request with updated information
 
-
+        setLastSet(new Date());
         setState("saved")
     }
 
-    const handleDelete = () => {
+    const handleDelete1 = () => {
+        
+        setState("delete")
+    }
+
+    const handleDelete2 = () => {
         //figure out logic here. 
         // 1) Confirm that the delete was intended
         // 1) send request to database which deletes the entry
         // 2) pull down new entries into redux
+
     }
 
     return (
@@ -94,23 +100,29 @@ const Entry = ({accountName, notificationDays, lastSet, password, newEntry}) => 
                 <p>{_accountName}</p>
             </div>
             <div className='notidays'>
-                <p>{_notificationDays}</p>
+                {state === "saved" && <p>{_notificationDays}</p>}
+                {state !== "saved" && <input className='entry__input' placeholder={_notificationDays} type="number"/>}
             </div>
             <div className='dateset'>
                 <p>{_lastSet.toString().split(/(\s+)/).slice(0, 9)}</p>
             </div>
-            <div className='password'>
-                <div className='password__text'>
-                    {pwVisible && <p>{password}</p>}
-                    {!pwVisible && <p>**********</p>}
-                </div>
-                {pwVisible && <button className='iconwrapper' onClick={handlePasswordVisibility}>
-                    <FiEyeOff size="60%" color="#282828"/>
-                </button>}
-                {!pwVisible && <button className='iconwrapper' onClick={handlePasswordVisibility}>
-                    <FiEye size="60%" color="#282828"/>
-                </button>}
 
+            <div className='password__outerdiv'>
+
+                {state === "saved" && <div className='password'>
+                    <div className='password__text'>
+                        {pwVisible && <p>{password}</p>}
+                        {!pwVisible && <p>**********</p>}
+                    </div>
+                    {pwVisible && <button className='iconwrapper' onClick={handlePasswordVisibility}>
+                        <FiEye size="60%" color="#282828"/>
+                    </button>}
+                    {!pwVisible && <button className='iconwrapper' onClick={handlePasswordVisibility}>
+                        <FiEyeOff size="60%" color="#282828"/>
+                    </button>}
+
+                </div>}
+                {state !== "saved" && <input className='entry__input__password' placeholder={password} type="text"/> }
             </div>
             <div className='icons'>
                 {state === "saved" && 
@@ -126,17 +138,18 @@ const Entry = ({accountName, notificationDays, lastSet, password, newEntry}) => 
                     <FiX size="80%" color="orange"/>
                 </button>}
                 {state === "edit" && 
-                <button className='iconwrapper' onClick={handleDelete}>
+                <button className='iconwrapper' onClick={handleDelete1}>
                     <FiTrash2 size="75%" color="#FF0000"/>
                 </button>}
-                {state === "create" && 
-                <button className='iconwrapper' onClick={handleSubmit}>
-                    <FiCheck size="80%" color="#00FF00"/>
-                </button>}
-                {state === "create" && 
-                <button className='iconwrapper' onClick={handleDelete}>
-                    <FiTrash2 size="75%" color="#FF0000"/>
-                </button>}
+                {state === "delete" && <div className='delete__wrapper'>
+                    <button className='confirm__delete'>
+                        Delete?
+                    </button>
+                    <button className='iconwrapper' onClick={handleReset}>
+                        <FiX size="80%" color="#00FF00"/>
+                    </button>
+                </div>}
+                
             </div>
         </div>
     )
