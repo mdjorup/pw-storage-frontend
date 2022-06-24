@@ -1,6 +1,7 @@
 .entry {
     display: flex;
-    height: 2.5em;
+    height: 3em;
+    border-bottom: 1px solid lightgray;
     
 }
 
@@ -28,29 +29,35 @@
 
 .password {
     display: flex;
+    justify-content: right;
     align-items: center;
 
     flex: 1.5;
 }
 
+.password__text {
+    margin-right: 1em;
+}
 .icons {
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: right;
     padding: 0em 0em 0em 0em;
     flex: 1;
 }
 
-.iconselector {
+.iconwrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    width: 2.5em;
-    height: 2.5em;
+    width: 3em;
+    height: 3em;
     cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
 
-.iconselector:hover {
-    background-color: lightgray;
+.iconwrapper:hover {
+    background-color: whitesmoke;
 }

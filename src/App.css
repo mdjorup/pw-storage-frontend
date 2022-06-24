@@ -17,3 +17,34 @@
   padding: 2em 18em 0em 18em;
 }
 
+.entries {
+  border-top: 2px solid black;
+  margin-top: 0.5em;
+}
+
+.entries__header{
+  display: flex;
+}
+
+.tableheader {
+  font-weight: 600;
+}
+
+.account {
+  flex: 1
+}
+.noti {
+  flex: 1
+}
+.modified{
+  flex: 2
+}
+.pw{
+  flex: 1.5;
+  display: flex;
+  justify-content: center;
+}
+.ic {
+  flex: 1;
+}
+

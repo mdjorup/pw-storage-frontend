@@ -16,6 +16,13 @@ function App() {
     lastSet: new Date(),
     password: 1234567890,
     state: "saved"
+  }, {
+    id: 2,
+    accountName: "Apple ID",
+    notificationDays: 100,
+    lastSet: new Date(),
+    password: 1234567890,
+    state: "saved"
   }];
 
 
@@ -28,22 +35,31 @@ function App() {
         </button>
       </div>
       <div className='app__body'>
-        <p>Here are your passwords:</p>
-        {testEntries && testEntries.map((entry) => {
-            let id = entry.id
-            let accountName = entry.accountName;
-            let notificationDays = entry.notificationDays;
-            let lastSet = entry.lastSet;
-            let password = entry.password;
-            let state = entry.state;
-            return <Entry key={id}
-                          accountName={accountName}
-                          notificationDays={notificationDays}
-                          lastSet={lastSet}
-                          password={password}
-                          state={state}/>
-          })
-        }
+        <div className='entries__header'>
+          <p className='tableheader account'>Account Name</p>
+          <p className='tableheader noti'>Notification Days</p>
+          <p className='tableheader modified'>Last Modified</p>
+          <p className='tableheader pw'>Password</p>
+          <p className='tableheader ic'></p>
+
+        </div>
+        <div className="entries">
+          {testEntries && testEntries.map((entry) => {
+              let id = entry.id
+              let accountName = entry.accountName;
+              let notificationDays = entry.notificationDays;
+              let lastSet = entry.lastSet;
+              let password = entry.password;
+              let state = entry.state;
+              return <Entry key={id}
+                            accountName={accountName}
+                            notificationDays={notificationDays}
+                            lastSet={lastSet}
+                            password={password}
+                            state={state}/>
+            })
+          }
+        </div>
       </div>
     </div> 
   );

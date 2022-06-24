@@ -28,7 +28,7 @@ const IconSelector = ({type}) => {
 
     return (
         
-        <div className='iconselector'>
+        <button className='iconselector'>
             {type === "edit" && <FiEdit size="60%" color="blue"/>}
             {type === "check" && <FiCheck size="80%" color="#00FF00"/>}
             {type === "reset" && <FiX size="80%" color="orange"/>}
@@ -36,7 +36,7 @@ const IconSelector = ({type}) => {
             {type === "view" && <FiEye size="80%" color="#282828"/>}
             {type === "hide" && <FiEyeOff size="60%" color="#282828"/>}
 
-        </div>
+        </button>
     )
 }
 
@@ -44,7 +44,7 @@ const IconSelector = ({type}) => {
 
 
 
-const Entry = ({accountName, notificationDays, lastSet, password}) => {
+const Entry = ({accountName, notificationDays, lastSet, password, newEntry}) => {
 
     const [pwVisible, setPwVisible] = useState(true);
 
@@ -53,13 +53,40 @@ const Entry = ({accountName, notificationDays, lastSet, password}) => {
     const [_lastSet, setLastSet] = useState(lastSet);
     const [_password, setPassword] = useState(password);
 
-    
-
-
-
-
-    const [state, setState] = useState("saved")
+    const [state, setState] = useState(newEntry ? "create" : "saved")
     // here we will send the request for the password if 
+
+
+
+
+    const handleEditClick = () => {
+        setState("edit");
+    }
+
+    const handlePasswordVisibility = () => {
+        setPwVisible(!pwVisible)
+    }
+
+    const handleReset = () => {
+        setNotificationDays(notificationDays);
+        setPassword(password)
+
+        setState("saved")
+    }
+
+    const handleSubmit = () => {
+        //send request with updated information
+
+
+        setState("saved")
+    }
+
+    const handleDelete = () => {
+        //figure out logic here. 
+        // 1) Confirm that the delete was intended
+        // 1) send request to database which deletes the entry
+        // 2) pull down new entries into redux
+    }
 
     return (
         <div className='entry'>
@@ -70,19 +97,46 @@ const Entry = ({accountName, notificationDays, lastSet, password}) => {
                 <p>{_notificationDays}</p>
             </div>
             <div className='dateset'>
-                <p>{_lastSet.toString()}</p>
+                <p>{_lastSet.toString().split(/(\s+)/).slice(0, 9)}</p>
             </div>
             <div className='password'>
-                {pwVisible && <p>{password}</p>}
-                {!pwVisible && <p>**********</p>}
-                {pwVisible && <IconSelector type="hide"/>}
-                {!pwVisible && <IconSelector type="view"/>}
+                <div className='password__text'>
+                    {pwVisible && <p>{password}</p>}
+                    {!pwVisible && <p>**********</p>}
+                </div>
+                {pwVisible && <button className='iconwrapper' onClick={handlePasswordVisibility}>
+                    <FiEyeOff size="60%" color="#282828"/>
+                </button>}
+                {!pwVisible && <button className='iconwrapper' onClick={handlePasswordVisibility}>
+                    <FiEye size="60%" color="#282828"/>
+                </button>}
 
             </div>
             <div className='icons'>
-                {state === "saved" && ["edit"].map((icon) => <IconSelector type={icon}/>)}
-                {state === "edit" && ["check", "reset", "delete"].map((icon) => <IconSelector type={icon}/>)}
-                {state === "create" && ["check", "delete"].map((icon) => <IconSelector type={icon}/>)}
+                {state === "saved" && 
+                <button className='iconwrapper' onClick={handleEditClick}>
+                    <FiEdit size="60%" color="blue"/>
+                </button>}
+                {state === "edit" && 
+                <button className='iconwrapper' onClick={handleSubmit}>
+                    <FiCheck size="80%" color="#00FF00"/>
+                </button>}
+                {state === "edit" && 
+                <button className='iconwrapper' onClick={handleReset}>
+                    <FiX size="80%" color="orange"/>
+                </button>}
+                {state === "edit" && 
+                <button className='iconwrapper' onClick={handleDelete}>
+                    <FiTrash2 size="75%" color="#FF0000"/>
+                </button>}
+                {state === "create" && 
+                <button className='iconwrapper' onClick={handleSubmit}>
+                    <FiCheck size="80%" color="#00FF00"/>
+                </button>}
+                {state === "create" && 
+                <button className='iconwrapper' onClick={handleDelete}>
+                    <FiTrash2 size="75%" color="#FF0000"/>
+                </button>}
             </div>
         </div>
     )
