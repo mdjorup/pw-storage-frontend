@@ -8,8 +8,6 @@ import Entry from './Entry/Entry';
 import CreateEntry from './CreateEntry/CreateEntry';
 import Auth from './Auth/Auth';
 
-import {FiPlus} from "react-icons/fi"
-
 
 
 const Home = () => {
@@ -109,7 +107,6 @@ const Home = () => {
 }
 
 
-//7034480005
 function App() {
 
   const dispatch = useDispatch();
@@ -118,13 +115,11 @@ function App() {
 
 
   return (
-    <div>
-      <Routes>
-        <Route path='/' element={user.jwt ? <Home/> : <Navigate to='login'/> }/>
-        <Route path='/login' element={null} />
-        <Route path='/register' element={null} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path='/' element={user.jwt ? <Home/> : <Navigate to='login'/> }/>
+      <Route path='/login' element={<Auth type="login"/>} />
+      <Route path='/register' element={<Auth type='register'/>} />
+    </Routes>
   )
 }
 
