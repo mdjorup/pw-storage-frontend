@@ -24,22 +24,6 @@ create, edit, saved
 
 */
 
-const IconSelector = ({type}) => {
-
-    return (
-        
-        <button className='iconselector'>
-            {type === "edit" && <FiEdit size="60%" color="blue"/>}
-            {type === "check" && <FiCheck size="80%" color="#00FF00"/>}
-            {type === "reset" && <FiX size="80%" color="orange"/>}
-            {type === "delete" && <FiTrash2 size="75%" color="FF0000"/>}
-            {type === "view" && <FiEye size="80%" color="#282828"/>}
-            {type === "hide" && <FiEyeOff size="60%" color="#282828"/>}
-
-        </button>
-    )
-}
-
 
 
 

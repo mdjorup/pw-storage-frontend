@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import './App.css';
+import {Routes, Route, Navigate} from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux';
+
 
 import Entry from './Entry/Entry';
 import CreateEntry from './CreateEntry/CreateEntry';
+import Auth from './Auth/Auth';
 
 import {FiPlus} from "react-icons/fi"
 
 
-//7034480005
-function App() {
 
+const Home = () => {
   const [creating, setCreating] = useState(false)
 
 
@@ -50,6 +53,14 @@ function App() {
     state: "saved"
   }];
 
+  const handleNewPwReset = () => {
+    setCreating(false)
+  }
+
+  const handleNewPwSubmit = () => {
+    setCreating(false)
+  }
+
 
   return (
     <div className="App">
@@ -87,13 +98,34 @@ function App() {
         </div>
         <div className="create__entry">
           {!creating && <button className='createnew__button' onClick={() => setCreating(true)}>
-              <FiPlus size="80%"/>
+              {/* <FiPlus size="80%"/> */}
+              New Entry
             </button>}
-          {creating && <CreateEntry />}
+          {creating && <CreateEntry reset={handleNewPwReset} submit={handleNewPwSubmit}/>}
         </div>
       </div>
     </div> 
   );
+}
+
+
+//7034480005
+function App() {
+
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user)
+
+
+  return (
+    <div>
+      <Routes>
+        <Route path='/' element={user.jwt ? <Home/> : <Navigate to='login'/> }/>
+        <Route path='/login' element={null} />
+        <Route path='/register' element={null} />
+      </Routes>
+    </div>
+  )
 }
 
 export default App;

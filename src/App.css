@@ -59,6 +59,7 @@
   border: 1px solid lightgray;
   background-color: transparent;
   width: 10%;
+  min-width: 100px;
   cursor: pointer;
   height: 2em;
   border-radius: 1em;
