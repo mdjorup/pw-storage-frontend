@@ -94,6 +94,12 @@ const Entry = ({accountName, notificationDays, lastSet, password}) => {
 
     }
 
+    const formatDate = (date) => {
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+
+        return date.toLocaleDateString(undefined, options)
+    }
+
     return (
         <div className='entry'>
             <div className='entry__account'>
@@ -104,7 +110,7 @@ const Entry = ({accountName, notificationDays, lastSet, password}) => {
                 {state !== "saved" && <input className='entry__input' placeholder={_notificationDays} type="number"/>}
             </div>
             <div className='dateset'>
-                <p>{_lastSet.toString().split(/(\s+)/).slice(0, 9)}</p>
+                <p>{formatDate(_lastSet)}</p>
             </div>
 
             <div className='password__outerdiv'>

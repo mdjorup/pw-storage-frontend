@@ -48,3 +48,25 @@
   flex: 1;
 }
 
+.create__entry {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.createnew__button{
+  outline: none;
+  border: 1px solid lightgray;
+  background-color: transparent;
+  width: 10%;
+  cursor: pointer;
+  height: 2em;
+  border-radius: 1em;
+
+}
+
+.createnew__button:hover {
+  background-color: #282828;
+  color: white;
+}
+

@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import './App.css';
 
 import Entry from './Entry/Entry';
+import CreateEntry from './CreateEntry/CreateEntry';
+
+import {FiPlus} from "react-icons/fi"
 
 
 //7034480005
 function App() {
 
-
+  const [creating, setCreating] = useState(false)
 
 
   const testEntries = [{
@@ -80,6 +84,12 @@ function App() {
                             state={state}/>
             })
           }
+        </div>
+        <div className="create__entry">
+          {!creating && <button className='createnew__button' onClick={() => setCreating(true)}>
+              <FiPlus size="80%"/>
+            </button>}
+          {creating && <CreateEntry />}
         </div>
       </div>
     </div> 
